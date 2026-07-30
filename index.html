@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syntra Systems</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+
+.cursor-glow{
+position:fixed;
+width:500px;
+height:500px;
+background:radial-gradient(
+circle,
+rgba(139,92,246,.20),
+transparent 70%
+);
+border-radius:50%;
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:0;
+}
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(15px);
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:1000;
+border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.logo{
+font-size:1.4rem;
+font-weight:700;
+color:#a855f7;
+}
+
+nav{
+display:flex;
+gap:25px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+}
+
+.btn{
+background:linear-gradient(45deg,#6d28d9,#a855f7);
+padding:12px 25px;
+border-radius:12px;
+text-decoration:none;
+color:white;
+font-weight:bold;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+padding:0 8%;
+position:relative;
+z-index:1;
+}
+
+.hero-container{
+max-width:1200px;
+width:100%;
+margin:auto;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:70px;
+align-items:center;
+}
+
+.hero h1{
+font-size:5rem;
+line-height:1;
+margin-bottom:20px;
+}
+
+.hero h1 span{
+color:#a855f7;
+}
+
+.hero p{
+font-size:1.1rem;
+color:#bbb;
+line-height:1.8;
+}
+
+.hero-buttons{
+display:flex;
+gap:15px;
+margin-top:30px;
+flex-wrap:wrap;
+}
+
+.btn-secondary{
+border:1px solid rgba(255,255,255,.15);
+padding:12px 25px;
+border-radius:12px;
+text-decoration:none;
+color:white;
+}
+
+.mockup{
+background:#121218;
+padding:30px;
+border-radius:25px;
+border:1px solid rgba(255,255,255,.05);
+box-shadow:0 0 40px rgba(109,40,217,.25);
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+
+.stat{
+background:#1a1a22;
+padding:20px;
+border-radius:15px;
+}
+
+.stat h3{
+font-size:2rem;
+color:#a855f7;
+}
+
+.graph{
+height:180px;
+margin-top:20px;
+border-radius:15px;
+background:linear-gradient(
+180deg,
+rgba(168,85,247,.8),
+transparent
+);
+}
+
+section{
+padding:120px 8%;
+position:relative;
+z-index:1;
+}
+
+.title{
+text-align:center;
+font-size:3rem;
+margin-bottom:60px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:#121218;
+padding:30px;
+border-radius:20px;
+border:1px solid rgba(255,255,255,.05);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 30px rgba(168,85,247,.3);
+}
+
+.card h3{
+margin-bottom:15px;
+}
+
+.card p{
+color:#bbb;
+line-height:1.6;
+}
+
+.portfolio{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+}
+
+.project{
+background:#121218;
+aspect-ratio:16/9;
+border-radius:20px;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:1.2rem;
+border:1px solid rgba(255,255,255,.05);
+}
+
+.cta{
+text-align:center;
+}
+
+.cta h2{
+font-size:3rem;
+}
+
+.cta h3{
+font-size:4rem;
+color:#a855f7;
+margin:20px 0 30px;
+}
+
+.whatsapp{
+position:fixed;
+bottom:25px;
+right:25px;
+width:65px;
+height:65px;
+background:#25d366;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:30px;
+text-decoration:none;
+z-index:9999;
+box-shadow:0 0 20px rgba(37,211,102,.5);
+}
+
+footer{
+padding:50px;
+text-align:center;
+border-top:1px solid rgba(255,255,255,.05);
+color:#aaa;
+}
+
+@media(max-width:900px){
+
+.hero-container{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:3rem;
+}
+
+nav{
+display:none;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="cursor-glow"></div>
+
+<header>
+
+<div class="logo">
+SYNTRA SYSTEMS
+</div>
+
+<nav>
+#servicosServiços</a>
+#diferenciaisDiferenciais</a>
+#portfolio
+#contato
+</nav>
+
+<a class="btn" href="https://wa.me/5519999451613">
+Orçamento
+</a>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-container">
+
+<div>
+
+<h1>
+Tecnologia que
+<span>impulsiona</span>
+negócios.
+</h1>
+
+<p>
+Criamos sistemas, automações, websites
+e soluções digitais modernas para empresas
+que desejam crescer com tecnologia.
+</p>
+
+<div class="hero-buttons">
+
+<a class="btn" href="https://wa.me/5519999451613">
+Falar no WhatsApp
+</a>
+
+#servicos
+Conhecer Serviços
+</a>
+
+</div>
+
+</div>
+
+<div class="mockup">
+
+<div class="stats">
+
+<div class="stat">
+<h3>+50</h3>
+<p>Projetos</p>
+</div>
+
+<div class="stat">
+<h3>99%</h3>
+<p>Disponibilidade</p>
+</div>
+
+<div class="stat">
+<h3>24/7</h3>
+<p>Suporte</p>
+</div>
+
+<div class="stat">
+<h3>100%</h3>
+<p>Customizado</p>
+</div>
+
+</div>
+
+<div class="graph"></div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="servicos">
+
+<h2 class="title">Serviços</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>💻 Sistemas</h3>
+<p>Desenvolvimento de sistemas personalizados.</p>
+</div>
+
+<div class="card">
+<h3>🌐 Websites</h3>
+<p>Sites modernos e responsivos.</p>
+</div>
+
+<div class="card">
+<h3>⚡ Automações</h3>
+<p>Processos automatizados para aumentar produtividade.</p>
+</div>
+
+<div class="card">
+<h3>📊 Dashboards</h3>
+<p>Visualização inteligente de informações.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="diferenciais">
+
+<h2 class="title">Por que escolher a Syntra?</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>🚀 Tecnologia Moderna</h3>
+<p>Soluções desenvolvidas com as melhores práticas.</p>
+</div>
+
+<div class="card">
+<h3>⚡ Agilidade</h3>
+<p>Entregas rápidas e eficientes.</p>
+</div>
+
+<div class="card">
+<h3>🤝 Suporte Humano</h3>
+<p>Atendimento próximo e personalizado.</p>
+</div>
+
+<div class="card">
+<h3>🎯 Resultado</h3>
+<p>Foco total nos objetivos do cliente.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="portfolio">
+
+<h2 class="title">Portfólio</h2>
+
+<div class="portfolio">
+
+<div class="project">Dashboard Comercial</div>
+<div class="project">Portal Corporativo</div>
+<div class="project">Sistema de Gestão</div>
+
+</div>
+
+</section>
+
+<section class="cta">
+
+<h2>Seu projeto merece mais do que código.</h2>
+<h3>Merece Syntra.</h3>
+
+<a class="btn" href="https://wa.me/5519999451613">
+Solicitar orçamento
+</a>
+
+</section>
+
+<footer id="contato">
+
+<p>📞 (19) 99945-1613</p>
+<p>📸 @syntrasystemss</p>
+<p>🌐 syntrasystems.com.br</p>
+
+</footer>
+
+<a class="whatsapp" href="https://wa.me/5519999451613">
+💬
+</a>
+
+<script>
+const glow=document.querySelector('.cursor-glow');
+
+document.addEventListener('mousemove',(e)=>{
+glow.style.left=e.clientX+'px';
+glow.style.top=e.clientY+'px';
+});
+</script>
+
+</body>
+</html>
