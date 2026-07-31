@@ -1,1571 +1,754 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Syntra Systems | Soluções Digitais</title>
-
-  <meta name="description" content="A Syntra Systems desenvolve sites, sistemas web, automações, dashboards e soluções digitais para empresas." />
-  <meta name="theme-color" content="#050505" />
-
-  <style>
-    :root {
-      --bg: #050505;
-      --card: rgba(255,255,255,0.045);
-      --card-hover: rgba(255,255,255,0.075);
-      --border: rgba(255,255,255,0.09);
-      --purple: #7c3aed;
-      --purple-light: #a855f7;
-      --purple-soft: rgba(168,85,247,0.18);
-      --text: #ffffff;
-      --muted: #b7b7c7;
-      --muted-2: #85859a;
-      --green: #25d366;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      min-height: 100vh;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Segoe UI, Arial, sans-serif;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -5;
-      background:
-        radial-gradient(circle at 80% 10%, rgba(124,58,237,0.28), transparent 32%),
-        radial-gradient(circle at 10% 85%, rgba(168,85,247,0.16), transparent 34%),
-        linear-gradient(180deg, #050505, #07070b 48%, #050505);
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -4;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 58px 58px;
-      pointer-events: none;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      width: min(1180px, 90%);
-      margin: 0 auto;
-    }
-
-    .cursor-glow {
-      position: fixed;
-      width: 520px;
-      height: 520px;
-      border-radius: 50%;
-      background: radial-gradient(
-        circle,
-        rgba(168,85,247,0.22) 0%,
-        rgba(124,58,237,0.10) 38%,
-        transparent 70%
-      );
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      z-index: -3;
-    }
-
-    #particles {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      pointer-events: none;
-    }
-
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 999;
-      background: rgba(5,5,5,0.72);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .navbar {
-      height: 82px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .brand img {
-      width: 46px;
-      height: 46px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 18px rgba(168,85,247,0.35));
-    }
-
-    .brand strong {
-      display: block;
-      font-size: 1rem;
-      letter-spacing: 0.08em;
-    }
-
-    .brand span {
-      display: block;
-      margin-top: 3px;
-      color: var(--muted-2);
-      font-size: 0.78rem;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .nav-links a {
-      color: #e5e5ee;
-      font-size: 0.95rem;
-      transition: 0.25s ease;
-    }
-
-    .nav-links a:hover {
-      color: #d8b4fe;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .menu-toggle {
-      display: none;
-      width: 44px;
-      height: 44px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: rgba(255,255,255,0.04);
-      color: white;
-      font-size: 1.35rem;
-      cursor: pointer;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 22px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--purple), var(--purple-light));
-      color: white;
-      font-weight: 800;
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 0 28px rgba(124,58,237,0.28);
-      transition: 0.3s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 0 42px rgba(168,85,247,0.42);
-    }
-
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 22px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.04);
-      color: white;
-      font-weight: 700;
-      border: 1px solid var(--border);
-      transition: 0.3s ease;
-    }
-
-    .btn-outline:hover {
-      transform: translateY(-3px);
-      border-color: rgba(168,85,247,0.45);
-      background: rgba(168,85,247,0.08);
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 150px 0 90px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 70px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(168,85,247,0.08);
-      border: 1px solid rgba(168,85,247,0.25);
-      color: #d8b4fe;
-      font-weight: 800;
-      font-size: 0.88rem;
-      margin-bottom: 26px;
-    }
-
-    .hero h1 {
-      font-size: clamp(3rem, 7vw, 6.15rem);
-      line-height: 0.96;
-      letter-spacing: -0.07em;
-    }
-
-    .hero h1 span {
-      display: block;
-      background: linear-gradient(90deg, #ffffff, #d8b4fe, #8b5cf6);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero-description {
-      margin-top: 28px;
-      max-width: 650px;
-      color: var(--muted);
-      font-size: 1.12rem;
-      line-height: 1.85;
-    }
-
-    .hero-buttons {
-      margin-top: 36px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .trust-row {
-      margin-top: 32px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .trust-pill {
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.035);
-      border: 1px solid var(--border);
-      color: #d6d6e4;
-      font-size: 0.9rem;
-    }
-
-    .dashboard {
-      position: relative;
-      padding: 22px;
-      border-radius: 30px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.025));
-      border: 1px solid var(--border);
-      box-shadow: 0 0 65px rgba(124,58,237,0.22);
-      overflow: hidden;
-    }
-
-    .dashboard-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 22px;
-    }
-
-    .dots {
-      display: flex;
-      gap: 8px;
-    }
-
-    .dots span {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-    }
-
-    .red { background: #ff5f57; }
-    .yellow { background: #ffbd2e; }
-    .green { background: #28c840; }
-
-    .live {
-      font-size: 0.78rem;
-      color: #d8b4fe;
-      border: 1px solid rgba(168,85,247,0.25);
-      border-radius: 999px;
-      padding: 8px 12px;
-      background: rgba(168,85,247,0.07);
-    }
-
-    .metric-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .metric {
-      padding: 20px;
-      border-radius: 20px;
-      background: rgba(5,5,8,0.64);
-      border: 1px solid var(--border);
-    }
-
-    .metric span {
-      display: block;
-      color: var(--muted-2);
-      font-size: 0.85rem;
-    }
-
-    .metric strong {
-      display: block;
-      margin-top: 8px;
-      color: #d8b4fe;
-      font-size: 1.85rem;
-    }
-
-    .chart {
-      position: relative;
-      margin-top: 16px;
-      height: 210px;
-      border-radius: 22px;
-      background:
-        repeating-linear-gradient(to right, rgba(255,255,255,0.045) 0 1px, transparent 1px 55px),
-        repeating-linear-gradient(to bottom, rgba(255,255,255,0.045) 0 1px, transparent 1px 45px),
-        linear-gradient(180deg, rgba(168,85,247,0.45), rgba(124,58,237,0.12), transparent),
-        #0b0b10;
-      border: 1px solid var(--border);
-      overflow: hidden;
-    }
-
-    .chart-bars {
-      position: absolute;
-      inset: auto 24px 24px 24px;
-      height: 105px;
-      display: flex;
-      align-items: flex-end;
-      gap: 12px;
-    }
-
-    .chart-bars span {
-      flex: 1;
-      display: block;
-      border-radius: 10px 10px 0 0;
-      background: linear-gradient(180deg, #d8b4fe, #7c3aed);
-      box-shadow: 0 0 20px rgba(168,85,247,0.3);
-    }
-
-    .chart-bars span:nth-child(1) { height: 38%; }
-    .chart-bars span:nth-child(2) { height: 65%; }
-    .chart-bars span:nth-child(3) { height: 48%; }
-    .chart-bars span:nth-child(4) { height: 82%; }
-    .chart-bars span:nth-child(5) { height: 56%; }
-    .chart-bars span:nth-child(6) { height: 92%; }
-    .chart-bars span:nth-child(7) { height: 70%; }
-
-    .section {
-      padding: 105px 0;
-    }
-
-    .section-header {
-      text-align: center;
-      max-width: 790px;
-      margin: 0 auto 58px;
-    }
-
-    .kicker {
-      color: #c084fc;
-      font-weight: 900;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-size: 0.78rem;
-      margin-bottom: 14px;
-    }
-
-    .section-title {
-      font-size: clamp(2.2rem, 5vw, 4.25rem);
-      line-height: 1.05;
-      letter-spacing: -0.05em;
-    }
-
-    .section-description {
-      margin-top: 18px;
-      color: var(--muted);
-      line-height: 1.8;
-      font-size: 1.05rem;
-    }
-
-    .stats-strip {
-      padding: 10px 0 80px;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
-
-    .stat-card {
-      padding: 26px;
-      border-radius: 22px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(18px);
-      text-align: center;
-      transition: 0.3s ease;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(168,85,247,0.45);
-    }
-
-    .stat-card strong {
-      display: block;
-      font-size: 2.05rem;
-      color: #d8b4fe;
-    }
-
-    .stat-card span {
-      display: block;
-      margin-top: 8px;
-      color: var(--muted);
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .service-card {
-      position: relative;
-      min-height: 260px;
-      padding: 30px;
-      border-radius: 26px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(18px);
-      overflow: hidden;
-      transition: 0.35s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(168,85,247,0.45);
-      background: var(--card-hover);
-    }
-
-    .service-icon {
-      width: 54px;
-      height: 54px;
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, rgba(124,58,237,0.35), rgba(168,85,247,0.12));
-      border: 1px solid rgba(168,85,247,0.2);
-      font-size: 1.5rem;
-      margin-bottom: 22px;
-    }
-
-    .service-card h3 {
-      font-size: 1.35rem;
-      margin-bottom: 14px;
-    }
-
-    .service-card p {
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .diff-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-
-    .diff-main {
-      padding: 42px;
-      border-radius: 30px;
-      background:
-        radial-gradient(circle at top right, rgba(168,85,247,0.20), transparent 35%),
-        var(--card);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(18px);
-    }
-
-    .diff-main h2 {
-      font-size: clamp(2rem, 4vw, 3.65rem);
-      line-height: 1.05;
-      letter-spacing: -0.05em;
-      margin-bottom: 22px;
-    }
-
-    .diff-main p {
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .diff-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .diff-item {
-      padding: 24px;
-      border-radius: 24px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      transition: 0.3s ease;
-    }
-
-    .diff-item:hover {
-      transform: translateY(-6px);
-      border-color: rgba(168,85,247,0.45);
-    }
-
-    .diff-item strong {
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .diff-item span {
-      display: block;
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-
-    .tech-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 14px;
-    }
-
-    .tech-badge {
-      padding: 14px 18px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      color: #e8e8f5;
-      font-weight: 800;
-      transition: 0.3s ease;
-    }
-
-    .tech-badge:hover {
-      transform: translateY(-5px);
-      border-color: rgba(168,85,247,0.45);
-      color: #d8b4fe;
-    }
-
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-    }
-
-    .project-card {
-      position: relative;
-      min-height: 310px;
-      padding: 28px;
-      border-radius: 30px;
-      background:
-        radial-gradient(circle at 80% 20%, rgba(168,85,247,0.22), transparent 35%),
-        var(--card);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      transition: 0.35s ease;
-    }
-
-    .project-card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(168,85,247,0.45);
-      box-shadow: 0 0 40px rgba(124,58,237,0.22);
-    }
-
-    .project-tag {
-      display: inline-flex;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(168,85,247,0.1);
-      color: #d8b4fe;
-      border: 1px solid rgba(168,85,247,0.25);
-      font-size: 0.82rem;
-      font-weight: 800;
-      margin-bottom: 18px;
-    }
-
-    .project-card h3 {
-      font-size: 1.55rem;
-      margin-bottom: 12px;
-    }
-
-    .project-card p {
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 520px;
-    }
-
-    .project-mock {
-      position: absolute;
-      left: 28px;
-      right: 28px;
-      bottom: 26px;
-      height: 98px;
-      border-radius: 20px;
-      background:
-        repeating-linear-gradient(to right, rgba(255,255,255,0.06) 0 1px, transparent 1px 48px),
-        linear-gradient(135deg, rgba(168,85,247,0.32), rgba(255,255,255,0.03));
-      border: 1px solid var(--border);
-    }
-
-    .project-mock::after {
-      content: "";
-      position: absolute;
-      inset: 22px;
-      border-radius: 14px;
-      background: linear-gradient(90deg, #7c3aed, #a855f7, transparent);
-      opacity: 0.45;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 34px;
-      align-items: center;
-    }
-
-    .about-logo-box {
-      min-height: 420px;
-      border-radius: 34px;
-      background:
-        radial-gradient(circle, rgba(168,85,247,0.22), transparent 48%),
-        var(--card);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(18px);
-    }
-
-    .about-logo-box img {
-      width: 220px;
-      opacity: 0.96;
-      filter: drop-shadow(0 0 38px rgba(168,85,247,0.34));
-    }
-
-    .about-content h2 {
-      font-size: clamp(2.1rem, 5vw, 4rem);
-      line-height: 1.05;
-      letter-spacing: -0.05em;
-      margin-bottom: 22px;
-    }
-
-    .about-content p {
-      color: var(--muted);
-      line-height: 1.85;
-      margin-bottom: 18px;
-      font-size: 1.04rem;
-    }
-
-    .location-pills {
-      margin-top: 26px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .location-pills span {
-      padding: 11px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      color: #dcdcec;
-    }
-
-    .cta-box {
-      padding: 76px 34px;
-      border-radius: 34px;
-      text-align: center;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(168,85,247,0.24), transparent 42%),
-        var(--card);
-      border: 1px solid var(--border);
-      overflow: hidden;
-    }
-
-    .cta-box h2 {
-      font-size: clamp(2.4rem, 6vw, 5rem);
-      line-height: 1;
-      letter-spacing: -0.06em;
-      margin-bottom: 20px;
-    }
-
-    .cta-box p {
-      max-width: 620px;
-      margin: 0 auto 30px;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .footer {
-      padding: 70px 0 34px;
-      border-top: 1px solid var(--border);
-      background: rgba(255,255,255,0.015);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr 0.8fr;
-      gap: 34px;
-    }
-
-    .footer-brand {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    .footer-brand img {
-      width: 54px;
-      height: 54px;
-      object-fit: contain;
-    }
-
-    .footer-brand strong {
-      display: block;
-      letter-spacing: 0.08em;
-    }
-
-    .footer-brand span {
-      display: block;
-      color: var(--muted-2);
-      margin-top: 4px;
-      font-size: 0.9rem;
-    }
-
-    .footer p,
-    .footer a {
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .footer h4 {
-      margin-bottom: 14px;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .footer-links a:hover {
-      color: #d8b4fe;
-    }
-
-    .footer-bottom {
-      margin-top: 46px;
-      padding-top: 22px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      color: var(--muted-2);
-      font-size: 0.9rem;
-    }
-
-    .whatsapp-float {
-      position: fixed;
-      right: 24px;
-      bottom: 24px;
-      z-index: 999;
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: var(--green);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      box-shadow: 0 0 26px rgba(37,211,102,0.42);
-      transition: 0.3s ease;
-    }
-
-    .whatsapp-float:hover {
-      transform: translateY(-5px) scale(1.05);
-    }
-
-    .whatsapp-label {
-      position: absolute;
-      right: 76px;
-      white-space: nowrap;
-      background: #101016;
-      border: 1px solid var(--border);
-      color: white;
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-size: 0.9rem;
-      opacity: 0;
-      transform: translateX(10px);
-      pointer-events: none;
-      transition: 0.3s ease;
-    }
-
-    .whatsapp-float:hover .whatsapp-label {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .fade-up {
-      animation: fadeUp 0.75s ease both;
-    }
-
-    .delay-1 { animation-delay: 0.12s; }
-    .delay-2 { animation-delay: 0.22s; }
-    .delay-3 { animation-delay: 0.32s; }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(26px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 980px) {
-      .nav-links {
-        position: fixed;
-        top: 82px;
-        left: 0;
-        right: 0;
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 18px;
-        padding: 24px 8%;
-        background: rgba(5,5,5,0.96);
-        border-bottom: 1px solid var(--border);
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .nav-actions .btn {
-        display: none;
-      }
-
-      .hero-grid,
-      .about-grid,
-      .diff-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding-top: 135px;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .cards-grid,
-      .portfolio-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-      }
-    }
-
-    @media (max-width: 620px) {
-      .navbar {
-        height: 78px;
-      }
-
-      .brand span {
-        display: none;
-      }
-
-      .hero h1 {
-        font-size: 3rem;
-      }
-
-      .hero-description {
-        font-size: 1rem;
-      }
-
-      .metric-grid,
-      .stats-grid,
-      .diff-list {
-        grid-template-columns: 1fr;
-      }
-
-      .section {
-        padding: 82px 0;
-      }
-
-      .cta-box {
-        padding: 54px 24px;
-      }
-
-      .whatsapp-float {
-        right: 18px;
-        bottom: 18px;
-        width: 58px;
-        height: 58px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syntra Systems</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+
+body::before{
+content:"";
+position:fixed;
+inset:0;
+z-index:-5;
+background:
+radial-gradient(circle at 78% 12%, rgba(124,58,237,.28), transparent 32%),
+radial-gradient(circle at 12% 82%, rgba(168,85,247,.16), transparent 34%),
+linear-gradient(180deg,#050505,#07070b 48%,#050505);
+}
+
+body::after{
+content:"";
+position:fixed;
+inset:0;
+z-index:-4;
+background-image:
+linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+background-size:58px 58px;
+pointer-events:none;
+}
+
+a{
+color:inherit;
+text-decoration:none;
+}
+
+.cursor-glow{
+position:fixed;
+width:600px;
+height:600px;
+border-radius:50%;
+background:radial-gradient(
+circle,
+rgba(139,92,246,.20) 0%,
+rgba(139,92,246,.06) 40%,
+transparent 90%
+);
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:-3;
+}
+
+#particles{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-2;
+pointer-events:none;
+}
+
+header{
+position:fixed;
+top:0;
+width:100%;
+padding:20px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(0,0,0,.72);
+backdrop-filter:blur(15px);
+border-bottom:1px solid rgba(255,255,255,.05);
+z-index:999;
+}
+
+.logo{
+display:flex;
+flex-direction:column;
+line-height:1.15;
+}
+
+.logo strong{
+font-size:1.35rem;
+font-weight:800;
+letter-spacing:.03em;
+color:white;
+}
+
+.logo span{
+font-size:.9rem;
+font-weight:400;
+color:#bdbdbd;
+margin-top:4px;
+}
+
+nav{
+display:flex;
+gap:25px;
+align-items:center;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:500;
+transition:.3s;
+}
+
+nav a:hover{
+color:#c084fc;
+}
+
+.btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:12px 25px;
+border-radius:12px;
+background:linear-gradient(45deg,#7c3aed,#a855f7);
+text-decoration:none;
+color:white;
+font-weight:bold;
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 0 25px rgba(124,58,237,.25);
+transition:.3s;
+}
+
+.btn:hover{
+transform:translateY(-3px);
+box-shadow:0 0 35px rgba(168,85,247,.45);
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:130px 8% 80px;
+position:relative;
+z-index:1;
+}
+
+.hero-content{
+max-width:1200px;
+width:100%;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+}
+
+.badge{
+display:inline-block;
+padding:10px 18px;
+border:1px solid #7c3aed;
+border-radius:50px;
+margin-bottom:25px;
+color:#c084fc;
+background:rgba(124,58,237,.08);
+}
+
+.hero h1{
+font-size:5rem;
+line-height:1;
+margin-bottom:20px;
+letter-spacing:-.05em;
+}
+
+.hero h1 span{
+color:#a855f7;
+text-shadow:0 0 30px rgba(168,85,247,.28);
+}
+
+.hero p{
+font-size:1.1rem;
+line-height:1.8;
+color:#bdbdbd;
+max-width:620px;
+}
+
+.buttons{
+margin-top:30px;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+align-items:center;
+}
+
+.btn-outline{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:12px 25px;
+border:1px solid rgba(255,255,255,.15);
+border-radius:12px;
+text-decoration:none;
+color:white;
+transition:.3s;
+}
+
+.btn-outline:hover{
+border-color:#a855f7;
+background:rgba(168,85,247,.08);
+transform:translateY(-3px);
+}
+
+.dashboard{
+background:rgba(18,18,24,.88);
+border:1px solid rgba(255,255,255,.07);
+border-radius:25px;
+padding:25px;
+box-shadow:0 0 50px rgba(124,58,237,.20);
+backdrop-filter:blur(18px);
+}
+
+.dashboard-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:22px;
+}
+
+.dots{
+display:flex;
+gap:8px;
+}
+
+.dots span{
+width:12px;
+height:12px;
+border-radius:50%;
+}
+
+.red{
+background:#ff5f57;
+}
+
+.yellow{
+background:#ffbd2e;
+}
+
+.green{
+background:#28c840;
+}
+
+.live{
+font-size:.85rem;
+color:#d8b4fe;
+border:1px solid rgba(168,85,247,.3);
+border-radius:20px;
+padding:8px 12px;
+background:rgba(168,85,247,.08);
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+
+.card{
+background:#1b1b22;
+padding:20px;
+border-radius:15px;
+border:1px solid rgba(255,255,255,.06);
+}
+
+.card h3{
+font-size:2rem;
+color:#a855f7;
+}
+
+.card p{
+color:#aaa;
+margin-top:5px;
+}
+
+.graph{
+margin-top:20px;
+height:180px;
+border-radius:15px;
+background:
+repeating-linear-gradient(to right,rgba(255,255,255,.05) 0 1px,transparent 1px 45px),
+repeating-linear-gradient(to bottom,rgba(255,255,255,.05) 0 1px,transparent 1px 45px),
+linear-gradient(180deg,rgba(168,85,247,.8),transparent);
+position:relative;
+overflow:hidden;
+}
+
+.graph::after{
+content:"";
+position:absolute;
+bottom:0;
+left:25px;
+right:25px;
+height:90px;
+background:linear-gradient(90deg,#7c3aed,#a855f7,#d8b4fe);
+opacity:.6;
+clip-path:polygon(0 80%,15% 55%,30% 70%,45% 30%,60% 50%,75% 15%,100% 35%,100% 100%,0 100%);
+}
+
+section{
+padding:120px 8%;
+position:relative;
+z-index:1;
+}
+
+.section-title{
+font-size:3rem;
+text-align:center;
+margin-bottom:50px;
+}
+
+.services{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.service{
+background:rgba(18,18,24,.88);
+padding:30px;
+border-radius:20px;
+border:1px solid rgba(255,255,255,.05);
+transition:.3s;
+backdrop-filter:blur(18px);
+}
+
+.service:hover{
+transform:translateY(-10px);
+box-shadow:0 0 30px rgba(124,58,237,.25);
+border-color:rgba(168,85,247,.45);
+}
+
+.service h3{
+margin-bottom:15px;
+}
+
+.service p{
+color:#bdbdbd;
+line-height:1.7;
+}
+
+.cta{
+text-align:center;
+background:
+radial-gradient(circle at center,rgba(168,85,247,.20),transparent 55%);
+}
+
+.cta h2{
+font-size:3rem;
+}
+
+.cta h3{
+font-size:4rem;
+color:#a855f7;
+margin:20px 0;
+}
+
+footer{
+padding:50px;
+text-align:center;
+color:#9f9f9f;
+border-top:1px solid rgba(255,255,255,.05);
+position:relative;
+z-index:1;
+}
+
+footer p{
+margin-bottom:10px;
+}
+
+.whatsapp{
+position:fixed;
+right:24px;
+bottom:24px;
+width:64px;
+height:64px;
+background:#25d366;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+z-index:9999;
+box-shadow:0 0 25px rgba(37,211,102,.45);
+transition:.3s;
+}
+
+.whatsapp:hover{
+transform:scale(1.08) translateY(-4px);
+}
+
+@media(max-width:900px){
+
+header{
+padding:16px 6%;
+}
+
+nav{
+display:none;
+}
+
+.hero-content{
+grid-template-columns:1fr;
+}
+
+.hero{
+padding-top:130px;
+}
+
+.hero h1{
+font-size:3rem;
+}
+
+section{
+padding:90px 6%;
+}
+
+}
+
+@media(max-width:600px){
+
+.logo strong{
+font-size:1rem;
+}
+
+.logo span{
+font-size:.75rem;
+}
+
+.hero h1{
+font-size:2.7rem;
+}
+
+.section-title{
+font-size:2.3rem;
+}
+
+.cta h3{
+font-size:3rem;
+}
+
+}
+</style>
 </head>
 
 <body>
 
-  <div class="cursor-glow"></div>
-  <canvas id="particles"></canvas>
+<div class="cursor-glow"></div>
+<canvas id="particles"></canvas>
 
-  <header class="header">
-    <div class="container navbar">
-        #inicio
-  <logo.png
-  <div>
-    <strong>SYNTRA SYSTEMS</strong>
-    <span>Soluções digitais</span>
-  </div>
+<header>
+
+<div class="logo">
+<strong>SYNTRA SYSTEMS</strong>
+<span>Soluções digitais</span>
+</div>
+
+<nav>
+#inicioInício</a>
+#servicosServiços</a>
+#sobreSobre</a>
+#contatoContato</a>
+</nav>
+
+<a class="btn" href="https://wa.me/5519999451613" target="_blank">
+Solicitar orçamento
 </a>
 
-      <nav class="nav-links" id="navLinks">
-        #inicioInício</a>
-        #servicosServiços</a>
-        #diferenciaisDiferenciais</a>
-        #tecnologiasTecnologias</a>
-        #portfolioPortfólio</a>
-        #sobreSobre</a>
-        #contatoContato</a>
-      </nav>
-
-      <div class="nav-actions">
-        <a class="btn" href="https://wa.me/5519999451613" target="_blank" rel="noopener">
-          Solicitar orçamento
-        </a>
-
-        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
-          ☰
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <main id="inicio">
-
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy fade-up">
-          <div class="eyebrow">
-            ✦ Desenvolvimento Web • Sistemas • Automações
-          </div>
-
-          <h1>
-            Soluções digitais construídas
-            <span>para o próximo nível.</span>
-          </h1>
-
-          <p class="hero-description">
-            Desenvolvemos sistemas, websites e automações que transformam desafios
-            em vantagem competitiva para empresas que querem crescer com tecnologia.
-          </p>
-
-          <div class="hero-buttons">
-            <a class="btn" href="https://wa.me/5519999451613" target="_blank" rel="noopener">
-              Falar no WhatsApp
-            </a>
-
-            #servicos
-              Conhecer serviços
-            </a>
-          </div>
-
-          <div class="trust-row">
-            <span class="trust-pill">Araras - SP</span>
-            <span class="trust-pill">Porto Ferreira - SP</span>
-            <span class="trust-pill">Atendimento remoto</span>
-          </div>
-        </div>
-
-        <div class="hero-visual fade-up delay-1">
-          <div class="dashboard">
-            <div class="dashboard-top">
-              <div class="dots">
-                <span class="red"></span>
-                <span class="yellow"></span>
-                <span class="green"></span>
-              </div>
-
-              <div class="live">
-                Sistema em tempo real
-              </div>
-            </div>
-
-            <div class="metric-grid">
-              <div class="metric">
-                <span>Projetos personalizados</span>
-                <strong>100%</strong>
-              </div>
-
-              <div class="metric">
-                <span>Atendimento</span>
-                <strong>Remoto</strong>
-              </div>
-
-              <div class="metric">
-                <span>Suporte técnico</span>
-                <strong>24/7</strong>
-              </div>
-
-              <div class="metric">
-                <span>Soluções web</span>
-                <strong>Modernas</strong>
-              </div>
-            </div>
-
-            <div class="chart">
-              <div class="chart-bars">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="stats-strip">
-      <div class="container stats-grid">
-        <div class="stat-card fade-up">
-          <strong>100%</strong>
-          <span>Projetos personalizados</span>
-        </div>
-
-        <div class="stat-card fade-up delay-1">
-          <strong>24/7</strong>
-          <span>Suporte especializado</span>
-        </div>
-
-        <div class="stat-card fade-up delay-2">
-          <strong>Web</strong>
-          <span>Soluções modernas</span>
-        </div>
-
-        <div class="stat-card fade-up delay-3">
-          <strong>Brasil</strong>
-          <span>Atendimento remoto</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="servicos">
-      <div class="container">
-        <div class="section-header">
-          <div class="kicker">Serviços</div>
-
-          <h2 class="section-title">
-            Tecnologia para tirar ideias do papel e melhorar operações.
-          </h2>
-
-          <p class="section-description">
-            Criamos soluções digitais para empresas que precisam de presença online,
-            sistemas eficientes, automações e suporte técnico confiável.
-          </p>
-        </div>
-
-        <div class="cards-grid">
-          <article class="service-card">
-            <div class="service-icon">🌐</div>
-            <h3>Desenvolvimento Web</h3>
-            <p>
-              Criação de sites modernos, rápidos, responsivos e pensados para transmitir
-              credibilidade e gerar oportunidades.
-            </p>
-          </article>
-
-          <article class="service-card">
-            <div class="service-icon">💻</div>
-            <h3>Sistemas Sob Medida</h3>
-            <p>
-              Plataformas e sistemas web desenvolvidos para atender necessidades específicas
-              da operação do seu negócio.
-            </p>
-          </article>
-
-          <article class="service-card">
-            <div class="service-icon">⚡</div>
-            <h3>Automações Inteligentes</h3>
-            <p>
-              Automatização de tarefas repetitivas para reduzir retrabalho, economizar tempo
-              e aumentar produtividade.
-            </p>
-          </article>
-
-          <article class="service-card">
-            <div class="service-icon">🛠️</div>
-            <h3>Modernização de Sites</h3>
-            <p>
-              Melhorias visuais, técnicas e estruturais em sites existentes para deixá-los
-              mais rápidos, modernos e profissionais.
-            </p>
-          </article>
-
-          <article class="service-card">
-            <div class="service-icon">📊</div>
-            <h3>Dashboards e Relatórios</h3>
-            <p>
-              Organização de dados em painéis visuais para facilitar decisões estratégicas
-              e acompanhamento de indicadores.
-            </p>
-          </article>
-
-          <article class="service-card">
-            <div class="service-icon">🧩</div>
-            <h3>Suporte Técnico</h3>
-            <p>
-              Acompanhamento técnico para empresas que precisam de suporte, orientação,
-              ajustes e melhorias contínuas.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="diferenciais">
-      <div class="container diff-grid">
-        <div class="diff-main">
-          <div class="kicker">Diferenciais</div>
-
-          <h2>
-            Mais que código. Estratégia, cuidado e resultado.
-          </h2>
-
-          <p>
-            A Syntra Systems une tecnologia moderna, comunicação próxima e foco em resultado
-            para criar soluções que fazem sentido para cada negócio.
-          </p>
-        </div>
-
-        <div class="diff-list">
-          <div class="diff-item">
-            <strong>🚀 Tecnologia Moderna</strong>
-            <span>Interfaces atuais, responsivas e preparadas para diferentes dispositivos.</span>
-          </div>
-
-          <div class="diff-item">
-            <strong>🎯 Foco em Resultado</strong>
-            <span>Cada solução é pensada para resolver problemas reais e gerar valor.</span>
-          </div>
-
-          <div class="diff-item">
-            <strong>🤝 Atendimento Próximo</strong>
-            <span>Comunicação clara, acompanhamento e suporte durante o desenvolvimento.</span>
-          </div>
-
-          <div class="diff-item">
-            <strong>📈 Soluções Escaláveis</strong>
-            <span>Projetos preparados para crescer junto com a empresa.</span>
-          </div>
-
-          <div class="diff-item">
-            <strong>⚡ Entrega Ágil</strong>
-            <span>Processo objetivo para sair da ideia e chegar a uma solução funcional.</span>
-          </div>
-
-          <div class="diff-item">
-            <strong>🌎 Atendimento Remoto</strong>
-            <span>Atuação em Araras, Porto Ferreira e atendimento remoto em todo o Brasil.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="tecnologias">
-      <div class="container">
-        <div class="section-header">
-          <div class="kicker">Tecnologias</div>
-
-          <h2 class="section-title">
-            Ferramentas para construir soluções modernas.
-          </h2>
-
-          <p class="section-description">
-            Utilizamos tecnologias e plataformas conhecidas para criar projetos digitais
-            funcionais, escaláveis e fáceis de evoluir.
-          </p>
-        </div>
-
-        <div class="tech-wrap">
-          <span class="tech-badge">HTML5</span>
-          <span class="tech-badge">CSS3</span>
-          <span class="tech-badge">JavaScript</span>
-          <span class="tech-badge">Python</span>
-          <span class="tech-badge">Node.js</span>
-          <span class="tech-badge">GitHub</span>
-          <span class="tech-badge">Microsoft 365</span>
-          <span class="tech-badge">Power BI</span>
-          <span class="tech-badge">Azure</span>
-          <span class="tech-badge">Automação</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="portfolio">
-      <div class="container">
-        <div class="section-header">
-          <div class="kicker">Portfólio</div>
-
-          <h2 class="section-title">
-            Projetos demonstrativos que mostram o que podemos construir.
-          </h2>
-
-          <p class="section-description">
-            Enquanto novos cases são desenvolvidos, estes modelos representam tipos de soluções
-            que a Syntra Systems pode criar para empresas.
-          </p>
-        </div>
-
-        <div class="portfolio-grid">
-          <article class="project-card">
-            <span class="project-tag">Sistema Web</span>
-            <h3>Portal Administrativo</h3>
-            <p>
-              Ambiente para controle interno, cadastro de informações, acompanhamento de processos
-              e organização operacional.
-            </p>
-            <div class="project-mock"></div>
-          </article>
-
-          <article class="project-card">
-            <span class="project-tag">Dados</span>
-            <h3>Dashboard Comercial</h3>
-            <p>
-              Painel visual para acompanhar vendas, clientes, metas e indicadores importantes
-              para tomada de decisão.
-            </p>
-            <div class="project-mock"></div>
-          </article>
-
-          <article class="project-card">
-            <span class="project-tag">Gestão</span>
-            <h3>Sistema de Gestão</h3>
-            <p>
-              Solução para organizar rotinas, tarefas, registros e fluxos internos de pequenas
-              e médias empresas.
-            </p>
-            <div class="project-mock"></div>
-          </article>
-
-          <article class="project-card">
-            <span class="project-tag">Web</span>
-            <h3>Landing Page Empresarial</h3>
-            <p>
-              Página moderna para divulgar serviços, captar contatos e fortalecer a presença
-              digital de empresas.
-            </p>
-            <div class="project-mock"></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="sobre">
-      <div class="container about-grid">
-        <div class="about-logo-box">
-          logo.png
-        </div>
-
-        <div class="about-content">
-          <div class="kicker">Sobre a Syntra</div>
-
-          <h2>
-            Transformamos desafios em soluções digitais inteligentes.
-          </h2>
-
-          <p>
-            A Syntra Systems nasceu para ajudar empresas a evoluírem com tecnologia,
-            criando soluções digitais modernas, funcionais e alinhadas aos objetivos de cada negócio.
-          </p>
-
-          <p>
-            Desenvolvemos websites, sistemas web, automações e melhorias técnicas com foco em
-            performance, escalabilidade, organização e resultado.
-          </p>
-
-          <p>
-            Atuamos em Araras - SP, Porto Ferreira - SP e também de forma remota para empresas
-            de outras regiões do Brasil.
-          </p>
-
-          <div class="location-pills">
-            <span>📍 Araras - SP</span>
-            <span>📍 Porto Ferreira - SP</span>
-            <span>🌎 Atendimento remoto</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="cta-box">
-          <h2>Seu próximo projeto começa aqui.</h2>
-
-          <p>
-            Vamos transformar sua ideia em uma solução digital moderna, funcional
-            e preparada para gerar valor para o seu negócio.
-          </p>
-
-          <a class="btn" href="https://wa.me/5519999451613" target="_blank" rel="noopener">
-            Solicitar orçamento
-          </a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer" id="contato">
-    <div class="container footer-grid">
-      <div>
-        <div class="footer-brand">
-          logo.png
-
-          <div>
-            <strong>SYNTRA SYSTEMS</strong>
-            <span>Soluções digitais para o próximo nível</span>
-          </div>
-        </div>
-
-        <p>
-          Desenvolvimento de sites, sistemas web, automações, melhorias digitais
-          e suporte técnico para empresas.
-        </p>
-      </div>
-
-      <div>
-        <h4>Contato</h4>
-
-        <div class="footer-links">
-          <a href="https://wa.me/5519999451613" target="_blank" rel="noopener">📞 (19) 99945-1613</a>
-          <a href="mailto:contato@syntrasystems.com.br">📧 contato@syntrasystems.com.br</a>
-          https://instagram.com/syntrasystemss📸 @syntrasystemss</a>
-        </div>
-      </div>
-
-      <div>
-        <h4>Atendimento</h4>
-
-        <p>Araras - SP</p>
-        <p>Porto Ferreira - SP</p>
-        <p>Atendimento remoto em todo o Brasil</p>
-      </div>
-    </div>
-
-    <div class="container footer-bottom">
-      <span>© 2026 Syntra Systems. Todos os direitos reservados.</span>
-      <span>Construído para performance, inovação e resultado.</span>
-    </div>
-  </footer>
-
-  <a class="whatsapp-float" href="https://wa.me/5519999451613" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
-    <span class="whatsapp-label">Vamos conversar?</span>
-    💬
-  </a>
-
-  <script>
-    const glow = document.querySelector(".cursor-glow");
-
-    document.addEventListener("mousemove", function(event) {
-      glow.style.left = event.clientX + "px";
-      glow.style.top = event.clientY + "px";
-    });
-
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
-
-    if (menuToggle && navLinks) {
-      menuToggle.addEventListener("click", function() {
-        navLinks.classList.toggle("active");
-      });
-
-      document.querySelectorAll(".nav-links a").forEach(function(link) {
-        link.addEventListener("click", function() {
-          navLinks.classList.remove("active");
-        });
-      });
-    }
-
-    const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d");
-
-    let particles = [];
-    let width = 0;
-    let height = 0;
-    let mouse = {
-      x: null,
-      y: null
-    };
-
-    function resizeCanvas() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    }
-
-    function createParticles() {
-      particles = [];
-
-      const amount = Math.min(90, Math.floor(window.innerWidth / 18));
-
-      for (let i = 0; i < amount; i++) {
-        particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          radius: Math.random() * 1.8 + 0.5,
-          vx: (Math.random() - 0.5) * 0.25,
-          vy: (Math.random() - 0.5) * 0.25,
-          alpha: Math.random() * 0.45 + 0.15
-        });
-      }
-    }
-
-    function drawParticles() {
-      ctx.clearRect(0, 0, width, height);
-
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0 || p.x > width) {
-          p.vx *= -1;
-        }
-
-        if (p.y < 0 || p.y > height) {
-          p.vy *= -1;
-        }
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(168,85,247," + p.alpha + ")";
-        ctx.fill();
-
-        for (let j = i + 1; j < particles.length; j++) {
-          const p2 = particles[j];
-          const dx = p.x - p2.x;
-          const dy = p.y - p2.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 120) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = "rgba(168,85,247," + (0.08 * (1 - distance / 120)) + ")";
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-
-        if (mouse.x !== null && mouse.y !== null) {
-          const dxMouse = p.x - mouse.x;
-          const dyMouse = p.y - mouse.y;
-          const distanceMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-
-          if (distanceMouse < 150) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = "rgba(216,180,254," + (0.12 * (1 - distanceMouse / 150)) + ")";
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        }
-      }
-
-      requestAnimationFrame(drawParticles);
-    }
-
-    window.addEventListener("mousemove", function(event) {
-      mouse.x = event.clientX;
-      mouse.y = event.clientY;
-    });
-
-    window.addEventListener("resize", function() {
-      resizeCanvas();
-      createParticles();
-    });
-
-    resizeCanvas();
-    createParticles();
-    drawParticles();
-  </script>
+</header>
+
+<main id="inicio">
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div>
+
+<div class="badge">
+🚀 Tecnologia • Automação • Inovação
+</div>
+
+<h1>
+Soluções digitais construídas
+<span>para o próximo nível.</span>
+</h1>
+
+<p>
+Desenvolvemos sistemas, websites e automações que transformam desafios
+em vantagem competitiva para empresas que querem crescer com tecnologia.
+</p>
+
+<div class="buttons">
+
+<a class="btn" href="https://wa.me/5519999451613" target="_blank">
+Falar no WhatsApp
+</a>
+
+#servicos
+Conhecer serviços
+</a>
+
+</div>
+
+</div>
+
+<div class="dashboard">
+
+<div class="dashboard-top">
+
+<div class="dots">
+<span class="red"></span>
+<span class="yellow"></span>
+<span class="green"></span>
+</div>
+
+<div class="live">
+Sistema em tempo real
+</div>
+
+</div>
+
+<div class="stats">
+
+<div class="card">
+<h3>100%</h3>
+<p>Projetos personalizados</p>
+</div>
+
+<div class="card">
+<h3>Remoto</h3>
+<p>Atendimento</p>
+</div>
+
+<div class="card">
+<h3>24/7</h3>
+<p>Suporte técnico</p>
+</div>
+
+<div class="card">
+<h3>Web</h3>
+<p>Soluções modernas</p>
+</div>
+
+</div>
+
+<div class="graph"></div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="servicos">
+
+<h2 class="section-title">O que fazemos</h2>
+
+<div class="services">
+
+<div class="service">
+<h3>💻 Sistemas</h3>
+<p>Desenvolvimento de sistemas personalizados.</p>
+</div>
+
+<div class="service">
+<h3>🌐 Sites</h3>
+<p>Websites profissionais de alta performance.</p>
+</div>
+
+<div class="service">
+<h3>⚡ Automações</h3>
+<p>Automatização de processos e tarefas.</p>
+</div>
+
+<div class="service">
+<h3>📊 Dashboards</h3>
+<p>Visualização inteligente de indicadores.</p>
+</div>
+
+<div class="service">
+<h3>🔗 Integrações</h3>
+<p>Integração entre APIs e plataformas.</p>
+</div>
+
+<div class="service">
+<h3>🛡️ Suporte</h3>
+<p>Suporte especializado para empresas.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="sobre" class="cta">
+
+<h2>Seu projeto merece mais do que código.</h2>
+<h3>Merece Syntra.</h3>
+
+<a class="btn" href="https://wa.me/5519999451613" target="_blank">
+Solicitar orçamento
+</a>
+
+</section>
+
+</main>
+
+<footer id="contato">
+
+<p>📞 (19) 99945-1613</p>
+<p>📸 @syntrasystemss</p>
+<p>🌐 syntrasystems.com.br</p>
+
+</footer>
+
+<a class="whatsapp" href="https://wa.me/5519999451613" target="_blank">
+💬
+</a>
+
+<script>
+const glow = document.querySelector('.cursor-glow');
+
+document.addEventListener('mousemove', function(e){
+glow.style.left = e.clientX + 'px';
+glow.style.top = e.clientY + 'px';
+});
+
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+let particles = [];
+let width;
+let height;
+let mouse = {
+x: null,
+y: null
+};
+
+function resizeCanvas(){
+width = canvas.width = window.innerWidth;
+height = canvas.height = window.innerHeight;
+}
+
+function createParticles(){
+particles = [];
+
+const amount = Math.min(95, Math.floor(window.innerWidth / 18));
+
+for(let i = 0; i < amount; i++){
+particles.push({
+x: Math.random() * width,
+y: Math.random() * height,
+radius: Math.random() * 2.2 + 0.8,
+vx: (Math.random() - 0.5) * 0.25,
+vy: (Math.random() - 0.5) * 0.25,
+alpha: Math.random() * 0.55 + 0.25
+});
+}
+}
+
+function drawParticles(){
+ctx.clearRect(0, 0, width, height);
+
+for(let i = 0; i < particles.length; i++){
+const p = particles[i];
+
+p.x += p.vx;
+p.y += p.vy;
+
+if(p.x < 0 || p.x > width){
+p.vx *= -1;
+}
+
+if(p.y < 0 || p.y > height){
+p.vy *= -1;
+}
+
+ctx.beginPath();
+ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+ctx.fillStyle = "rgba(168,85,247," + p.alpha + ")";
+ctx.fill();
+
+for(let j = i + 1; j < particles.length; j++){
+const p2 = particles[j];
+const dx = p.x - p2.x;
+const dy = p.y - p2.y;
+const distance = Math.sqrt(dx * dx + dy * dy);
+
+if(distance < 120){
+ctx.beginPath();
+ctx.moveTo(p.x, p.y);
+ctx.lineTo(p2.x, p2.y);
+ctx.strokeStyle = "rgba(168,85,247," + (0.18 * (1 - distance / 120)) + ")";
+ctx.lineWidth = 1.3;
+ctx.stroke();
+}
+}
+
+if(mouse.x !== null && mouse.y !== null){
+const dxMouse = p.x - mouse.x;
+const dyMouse = p.y - mouse.y;
+const distanceMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+
+if(distanceMouse < 150){
+ctx.beginPath();
+ctx.moveTo(p.x, p.y);
+ctx.lineTo(mouse.x, mouse.y);
+ctx.strokeStyle = "rgba(216,180,254," + (0.30 * (1 - distanceMouse / 150)) + ")";
+ctx.lineWidth = 1.5;
+ctx.stroke();
+}
+}
+}
+
+requestAnimationFrame(drawParticles);
+}
+
+window.addEventListener("mousemove", function(event){
+mouse.x = event.clientX;
+mouse.y = event.clientY;
+});
+
+window.addEventListener("resize", function(){
+resizeCanvas();
+createParticles();
+});
+
+resizeCanvas();
+createParticles();
+drawParticles();
+</script>
 
 </body>
 </html>
